@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ITEISA" />
+    <meta name="description" content="Laboratorio de productos digitales." />
+
+    <meta property="og:title" content="ITEISA" />
+    <meta
+      property="og:description"
+      content="Laboratorio de productos digitales."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://iteisa.com" />
+    <meta property="og:image" content="https://iteisa.com/2023/social.jpg" />
+
+    <link rel="icon" type="image/png" href="/2023/icon.png" />
+    <link rel="apple-touch-icon" href="/2023/icon.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ITEISA" />
+    <meta name="twitter:creator" content="@ITEISA" />
+    <meta name="twitter:title" content="ITEISA" />
+    <meta
+      name="twitter:description"
+      content="Laboratorio de productos digitales."
+    />
+    <meta name="twitter:image" content="https://iteisa.com/2023/social.jpg" />
+    <meta name="twitter:image:alt" content="Comienza una nueva etapa." />
+
+    <title>ITEISA</title>
+
+    <style>
+      @keyframes blink {
+        0%,
+        50% {
+          background-color: var(--color);
+        }
+      }
+
+      @keyframes scan {
+        0% {
+          background-position: 0 -100vh;
+        }
+
+        35%,
+        100% {
+          background-position: 0 100vh;
+        }
+      }
+
+      @font-face {
+        font-family: VT220;
+        font-style: normal;
+        font-weight: 500;
+        font-display: block;
+        src: url(vt220.ttf);
+      }
+
+      :root {
+        --size: 28px;
+        --color: #28ea00;
+      }
+
+      @media (max-width: 1024px) {
+        :root {
+          --size: 24px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --size: 20px;
+        }
+      }
+
+      ::selection {
+        background: var(--color);
+        color: black;
+      }
+
+      html {
+        min-height: 100vh;
+        background-color: black;
+        background-image: radial-gradient(#11581e, #041607), url(noise.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: default;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        hyphens: auto;
+        font-size: var(--size);
+        min-height: 100vh;
+        background: repeating-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0,
+          rgba(0, 0, 0, 0.3) 50%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-size: auto 4px;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          0deg,
+          transparent 0%,
+          rgba(32, 128, 32, 0.2) 2%,
+          rgba(32, 128, 32, 0.8) 3%,
+          rgba(32, 128, 32, 0.2) 3%,
+          transparent 100%
+        );
+        background-repeat: no-repeat;
+        background-position: 0 -100vh;
+        animation: scan 5s linear 5s infinite;
+        pointer-events: none;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.03;
+        background-image: url(noise.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        pointer-events: none;
+      }
+
+      div {
+        position: relative;
+        font-family: VT220, monospace;
+        line-height: 100%;
+        width: min(80ch, calc(100vw - 8ch));
+        height: calc(100vh - 8ch);
+        overflow: scroll;
+        margin: auto;
+        color: var(--color);
+        text-shadow: 0 0 20px #1b5715e0, 0 0 5px #33d511ed, 0 0 2px #22662c;
+      }
+
+      div samp {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-family: inherit;
+      }
+
+      div u {
+        position: absolute;
+        width: 1ch;
+        height: 2ch;
+        z-index: -1;
+        margin-left: 1ch;
+        background-color: transparent;
+        animation: 1s blink infinite;
+      }
+
+      mark {
+        position: absolute;
+        width: 1ch;
+        height: 2ch;
+        z-index: -1;
+        background-color: var(--color);
+      }
+    </style>
+
+    <script type="module">
+      const div = document.querySelector("div");
+      const html = div.innerHTML;
+      const contents = html.trim().replaceAll(/\s+/g, " ");
+
+      div.innerHTML = "";
+
+      const startupDelay = 2000;
+      const typeDelay = 10;
+
+      let i = 0;
+      let skip = false;
+      let timeout;
+
+      const loop = () => {
+        if (contents[i] === undefined) {
+          clearTimeout(timeout);
+          return;
+        }
+
+        if (!skip && contents[i] === ">") {
+          skip = false;
+          i++;
+        } else if (contents[i] === "<") {
+          skip = true;
+          i++;
+        }
+
+        div.innerHTML = contents.slice(0, ++i);
+
+        const milliseconds = skip ? 0 : typeDelay;
+        timeout = setTimeout(loop, milliseconds);
+      };
+
+      setTimeout(loop, startupDelay);
+
+      const mark = document.querySelector("mark");
+
+      /*
+      document.addEventListener("mousemove", (event) => {
+        const { clientX, clientY } = event;
+
+        const foo = 28;
+
+        // const left = Math.floor(clientX / 14) * 14 + 5;
+        // const top = Math.floor(clientY / foo) * foo + 28 - 28 + 16;
+
+        const rect = div.getBoundingClientRect();
+
+        const left = Math.floor((clientX + rect.x + 28) / 14);
+        const top = Math.floor((clientY + rect.y + 28) / 14);
+
+        console.log(top, left);
+
+        // document.body.style.cursor = "none";
+
+        mark.style.left = `${left}px`;
+        mark.style.top = `${top}px`;
+      });
+      */
+
+      const sounds = {
+        down: {
+          enter: new Audio("/sounds/press/enter.mp3"),
+          space: new Audio("/sounds/press/space.mp3"),
+          backspace: new Audio("/sounds/press/backspace.mp3"),
+          generic: new Audio("/sounds/press/generic.mp3"),
+        },
+        up: {
+          enter: new Audio("/sounds/release/enter.mp3"),
+          space: new Audio("/sounds/release/space.mp3"),
+          backspace: new Audio("/sounds/release/backspace.mp3"),
+          generic: new Audio("/sounds/release/generic.mp3"),
+        },
+      };
+
+      document.addEventListener("keydown", (event) => {
+        if (event.repeat) {
+          return;
+        }
+
+        const { key } = event;
+
+        if (key === "Enter") {
+          sounds.down.enter.play();
+        } else if (key === "Backspace") {
+          sounds.down.backspace.play();
+        } else if (key === " ") {
+          sounds.down.space.play();
+        } else {
+          sounds.down.generic.play();
+        }
+      });
+
+      document.addEventListener("keyup", (event) => {
+        const { key } = event;
+
+        if (key === "Enter") {
+          sounds.up.enter.play();
+        } else if (key === "Backspace") {
+          sounds.up.backspace.play();
+        } else if (key === " ") {
+          sounds.up.space.play();
+        } else {
+          sounds.up.generic.play();
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <article>
+        <samp>
+          ITEISA es una empresa tecnológica fundada en 2004.<br />
+          <br />
+          Atesora una trayectoria de 20 años en el mercado de la consultoría y
+          los servicios en la nube, y más de 1000 clientes en varios países.<br />
+          <br />
+          En agosto de 2023 el negocio y la plataforma tecnológica de ITEISA han
+          sido adquiridos por otra compañía.<br />
+          <br />
+          Comienza una nueva etapa.<br />
+          <br />
+          &gt; <u></u>
+        </samp>
+      </article>
+    </div>
+    <mark></mark>
+  </body>
+</html>
