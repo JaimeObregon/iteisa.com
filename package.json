@@ -1,0 +1,28 @@
+{
+  "name": "iteisa.com",
+  "version": "1.0.0",
+  "description": "Laboratorio de productos digitales.",
+  "homepage": "https://iteisa.com",
+  "bugs": {
+    "url": "https://github.com/iteisa/iteisa.com/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iteisa/iteisa.com.git"
+  },
+  "license": "AGPL-3.0-or-later",
+  "author": "Jaime Gómez-Obregón",
+  "type": "module",
+  "main": "httpdocs/index.html",
+  "scripts": {
+    "start": "live-server --entry-file=index.html httpdocs"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "prettier": "^2.8.2"
+  }
+}

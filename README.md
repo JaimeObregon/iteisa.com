@@ -2,9 +2,21 @@
 
 ```
    _________________________
-  /  _/_  __/ __/  _/ __/ _ |  ITEISA DESARROLLO Y SISTEMAS, SL.
- _/ /  / / / _/_/ /_\ \/ __ |  Laboratorio de productos digitales.
-/___/ /_/ /___/___/___/_/ |_|  Casa fundada en 2004 por Jaime Gómez-Obregón.
+  /  _/_  __/ __/  _/ __/ _ |  Laboratorio de productos digitales.
+ _/ /  / / / _/_/ /_\ \/ __ |  Casa fundada en 2004 por Jaime Gómez-Obregón.
+/___/ /_/ /___/___/___/_/ |_|  Copyright (c) 2004-2023 ITEISA DESARROLLO Y SISTEMAS, SL.
 ```
 
-Copyright (c) 2004-2023 ITEISA DESARROLLO Y SISTEMAS, SL.
+Para instalar las dependencias:
+
+```shell
+$ yarn install
+```
+
+Para arrancar el servidor de desarrollo:
+
+```shell
+$ npm run start
+```
+
+Con cada _commit_ se despliega en [iteisa.netlify.com](iteisa.netlify.com).
