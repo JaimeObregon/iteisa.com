@@ -240,16 +240,16 @@
 
       const sounds = {
         down: {
-          enter: new Audio('/sounds/press/enter.mp3'),
-          space: new Audio('/sounds/press/space.mp3'),
-          backspace: new Audio('/sounds/press/backspace.mp3'),
-          generic: new Audio('/sounds/press/generic.mp3'),
+          enter: new Audio('/sounds/keys/press/enter.mp3'),
+          space: new Audio('/sounds/keys/press/space.mp3'),
+          backspace: new Audio('/sounds/keys/press/backspace.mp3'),
+          generic: new Audio('/sounds/keys/press/generic.mp3'),
         },
         up: {
-          enter: new Audio('/sounds/release/enter.mp3'),
-          space: new Audio('/sounds/release/space.mp3'),
-          backspace: new Audio('/sounds/release/backspace.mp3'),
-          generic: new Audio('/sounds/release/generic.mp3'),
+          enter: new Audio('/sounds/keys/release/enter.mp3'),
+          space: new Audio('/sounds/keys/release/space.mp3'),
+          backspace: new Audio('/sounds/keys/release/backspace.mp3'),
+          generic: new Audio('/sounds/keys/release/generic.mp3'),
         },
       }
 
@@ -284,6 +284,41 @@
           sounds.up.generic.play()
         }
       })
+
+      {
+        let timeout
+        let presses = []
+
+        document.addEventListener('keyup', (event) => {
+          const UP = 38
+          const DOWN = 40
+          const LEFT = 37
+          const RIGHT = 39
+          const B = 66
+          const A = 65
+          const PRESS_DELAY = 750
+          const KEY_COMBO = [UP, UP, DOWN, DOWN, LEFT, RIGHT, LEFT, RIGHT, B, A]
+
+          clearTimeout(timeout)
+          presses.push(event.keyCode)
+
+          let valid = true
+          presses.forEach((press, index) => {
+            if (KEY_COMBO[index] != press) {
+              valid = false
+            }
+          })
+
+          if (KEY_COMBO.length === presses.length && valid) {
+            const chiptune = new Audio('/sounds/chiptune.mp3')
+            chiptune.play()
+          }
+
+          timeout = setTimeout(() => {
+            presses = []
+          }, PRESS_DELAY)
+        })
+      }
     </script>
   </head>
   <body>
