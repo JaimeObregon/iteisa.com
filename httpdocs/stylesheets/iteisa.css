@@ -34,11 +34,6 @@
   }
 }
 
-::selection {
-  background: var(--color);
-  color: black;
-}
-
 html {
   min-height: 100vh;
   background-color: black;
@@ -94,65 +89,4 @@ body::after {
   background-repeat: no-repeat;
   background-size: cover;
   pointer-events: none;
-}
-
-x-terminal {
-  position: relative;
-  font-family: VT220, monospace;
-  line-height: 100%;
-  width: min(80ch, calc(100vw - 8ch));
-  height: calc(100vh - 8ch);
-  overflow: scroll;
-  margin: auto;
-  color: var(--color);
-  text-shadow: 0 0 20px #1b5715e0, 0 0 5px #33d511ed, 0 0 2px #22662c;
-
-  cursor: none;
-}
-
-x-terminal pre {
-  display: block;
-  /*position: absolute;
-  left: 0;
-  bottom: 0;*/
-  font-family: inherit;
-  margin-bottom: 2ch;
-}
-
-x-terminal a {
-  background: #28ea00;
-  color: black;
-}
-
-x-terminal a:hover {
-  background: black;
-  color: #28ea00;
-}
-
-x-terminal kbd::before {
-  content: '<';
-}
-
-x-terminal kbd::after {
-  content: '>';
-}
-
-x-terminal kbd {
-  font-family: inherit;
-}
-
-x-terminal em {
-  font-style: normal;
-  background: repeating-linear-gradient(
-      90deg,
-      #28ea00 0,
-      #28ea00 12px,
-      transparent 0px,
-      transparent 14px
-    )
-    0 100%/ 999ch 2px no-repeat;
-}
-
-x-terminal pre {
-  white-space: pre-wrap;
 }

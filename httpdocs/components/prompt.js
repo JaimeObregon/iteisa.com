@@ -17,6 +17,7 @@ class Prompt extends MyElement {
     span {
       outline: none;
       caret-color: transparent;
+      white-space: pre;
     }
 
     mark {
@@ -36,7 +37,22 @@ class Prompt extends MyElement {
   `
 
   connectedCallback() {
-    this.shadowRoot?.querySelector('span').focus()
+    const span = this.shadowRoot.querySelector('span')
+
+    document.addEventListener('keydown', ({ key }) => {
+      span.focus()
+
+      const command = span.innerText.trim().toUpperCase()
+
+      if (key === 'Enter') {
+        const event = new CustomEvent('command', {
+          detail: { command },
+          composed: true,
+        })
+
+        this.dispatchEvent(event)
+      }
+    })
   }
 }
 
