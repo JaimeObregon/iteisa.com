@@ -13,9 +13,7 @@ class Output extends MyElement {
 
   static html = html`<slot></slot>`
 
-  connectedCallback() {
-    console.log('output')
-  }
+  connectedCallback() {}
 }
 
 export { Output }

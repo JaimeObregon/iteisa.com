@@ -2,6 +2,8 @@ import { MyElement, html, css } from '../modules/element.js'
 import './prompt.js'
 
 class Terminal extends MyElement {
+  commands = []
+
   static styles = css`
     :host {
       position: relative;
@@ -73,11 +75,17 @@ class Terminal extends MyElement {
     })
 
     this.addEventListener('command', ({ detail }) => {
+      const commands = this.commands
+        .filter(({ hidden }) => !hidden)
+        .map(({ command, href }) => html` <a href="${href}">${command}</a> `)
+
       const { command } = detail
 
       // TODO ‼️ XSS
       this.innerHTML += html`
-        <x-output>Comando o nombre de archivo incorrecto: ${command}</x-output>
+        <x-output>&gt; ${command}</x-output>
+        <x-output>Comando o nombre de archivo incorrecto.</x-output>
+        <x-output>Comandos disponibles: ${commands.join(', ')}</x-output>
       `
     })
 

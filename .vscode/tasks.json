@@ -6,7 +6,7 @@
       "runOptions": {
         "runOn": "folderOpen"
       },
-      "script": "start",
+      "script": "serve",
       "type": "npm"
     }
   ],

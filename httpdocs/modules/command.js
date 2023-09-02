@@ -81,6 +81,12 @@ class Command extends MyElement {
     h1:after {
       content: ' >>>';
     }
+
+    div {
+      border: 2px dotted var(--color);
+      margin: 0;
+      padding: 1ch 2ch;
+    }
   `
 
   static html = html``

@@ -51,6 +51,8 @@ class Prompt extends MyElement {
         })
 
         this.dispatchEvent(event)
+
+        span.innerHTML = ''
       }
     })
   }

@@ -16,7 +16,13 @@ $ yarn install
 Para arrancar el servidor de desarrollo:
 
 ```shell
-$ npm run start
+$ npm run serve
+```
+
+Para construir el proyecto a desplegar:
+
+```shell
+$ npm run build
 ```
 
 Con cada _commit_ se despliega en [iteisa.netlify.com](iteisa.netlify.com).
