@@ -42,11 +42,11 @@ class Prompt extends MyElement {
     document.addEventListener('keydown', ({ key }) => {
       span.focus()
 
-      const command = span.innerText.trim().toUpperCase()
+      const string = span.innerText.trim().toUpperCase()
 
       if (key === 'Enter') {
         const event = new CustomEvent('command', {
-          detail: { command },
+          detail: { string },
           composed: true,
         })
 

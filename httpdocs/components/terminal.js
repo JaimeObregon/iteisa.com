@@ -26,6 +26,15 @@ class Terminal extends MyElement {
     </div>
   `
 
+  async run(string) {
+    const command = this.commands.find(({ command }) => command === string)
+    const { component, module } = command
+
+    await import(`../commands/${module}`)
+
+    this.innerHTML += html`<${component}></${component}>`
+  }
+
   connectedCallback() {
     const sounds = {
       down: {
@@ -75,18 +84,20 @@ class Terminal extends MyElement {
     })
 
     this.addEventListener('command', ({ detail }) => {
-      const commands = this.commands
-        .filter(({ hidden }) => !hidden)
-        .map(({ command, href }) => html` <a href="${href}">${command}</a> `)
-
-      const { command } = detail
+      const { string } = detail
 
       // TODO ‼️ XSS
-      this.innerHTML += html`
-        <x-output>&gt; ${command}</x-output>
-        <x-output>Comando o nombre de archivo incorrecto.</x-output>
-        <x-output>Comandos disponibles: ${commands.join(', ')}</x-output>
-      `
+      this.innerHTML += html`<x-output>&gt; ${string}</x-output>`
+
+      const command = this.commands.find(({ command }) => command === string)
+
+      if (command) {
+        this.run(string)
+      } else {
+        this.innerHTML += html`<x-output
+          >Comando o nombre de archivo incorrecto.</x-output
+        >`
+      }
     })
 
     // 🙂 https://en.wikipedia.org/wiki/Konami_Code

@@ -47,58 +47,69 @@ terminal.commands = [
   {
     href: '/',
     command: 'WELCOME',
-    component: 'x-welcome',
+    module: 'welcome.js',
+    component: 'x-welcome-command',
     description: 'Da la bienvenida al usuario al servidor.',
     hidden: true,
   },
   {
     href: '/iteisa',
     command: 'ITEISA',
-    component: 'x-iteisa',
+    module: 'iteisa.js',
+    component: 'x-iteisa-command',
     description: 'Muestra información corporativa de ITEISA.',
   },
   {
     href: '/news',
     command: 'NEWS',
-    component: 'x-news',
+    module: 'news.js',
+    component: 'x-news-command',
     description:
       'Presenta actualidad de la empresa y el blog, iniciado desde 2004.',
   },
   {
     href: '/products',
     command: 'PRODUCTS',
-    component: 'x-products',
+    module: 'products.js',
+    component: 'x-products-command',
     description: 'Catálogo de productos de ITEISA.',
   },
   {
     href: '/files',
     command: 'FILES',
-    component: 'x-files',
+    module: 'files.js',
+    component: 'x-files-command',
     description: 'Abre el repositorio de ficheros para descarga.',
   },
   {
     href: '/contact',
     command: 'CONTACT',
-    component: 'x-contact',
+    module: 'contact.js',
+    component: 'x-contact-command',
     description: 'Cómo contactar con ITEISA.',
   },
   {
     href: '/legal',
     command: 'LEGAL',
-    component: 'x-legal',
+    module: 'legal.js',
+    component: 'x-legal-command',
     description: 'Presenta el aviso legal de este servidor iteisa.com.',
   },
   {
     href: '/help',
     command: 'HELP',
-    component: 'x-help',
+    module: 'help.js',
+    component: 'x-help-command',
     description: 'Carga esta pantalla de ayuda.',
   },
   {
     href: '/indy',
     command: 'INDY', // 🤫
-    component: 'x-indy',
+    module: 'indy.js',
+    component: 'x-indy-command',
     description: 'Enhorabuena, ¡has encontrado un comando secreto!',
     hidden: true,
   },
 ]
+
+terminal.run('WELCOME')
