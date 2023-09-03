@@ -133,8 +133,7 @@ class Terminal extends MyElement {
       })
 
       if (combo.length === buffer.length && valid) {
-        const chiptune = new Audio('/sounds/chiptune.mp3')
-        chiptune.play()
+        this.run('INDY')
       }
 
       timeout = setTimeout(() => (buffer = []), delay)

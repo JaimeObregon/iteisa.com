@@ -20,21 +20,11 @@ iteisa.com no utiliza <i>cookies</i>.
 iteisa.com no recoge ni trata ningún dato personal.
 
 <h1>PROPIEDAD INTELECTUAL</h1>
-Tanto los contenidos como el código fuente de iteisa.com son copyright de
-ITEISA y se distribuyen con licencias abiertas:
+Tanto los contenidos como el código fuente de iteisa.com son <i>copyright</i> de ITEISA y se distribuyen con licencias abiertas:
 
 <ul>
-<li>Salvo donde se indique lo contrario, los contenidos de este servidor tienen
-licencia CC BY-SA 4.0. Esto significa que puedes redistribuirlos, adaptarlos,
-remezclarlos y construir subre ellos en cualquier medio y formato, incluso con
-fines comerciales, pero debes dar crédito a ITEISA como autor y distribuir la
-obra derivada bajo esta misma licencia.</li>
-<li>El código fuente se distribuye con licencia AGPL v3. Esto significa que puedes
-acceder, modificarlo y redistribuirlo, incluso con fines comerciales, pero
-debes licenciar como AGPL v3 y publicar el código fuente del proyecto completo
-en el que incorpores esta reutilización, incluir este aviso de licencia y del
-<i>copyright</i> de ITEISA y conceder derecho de uso sobre las patentes que
-pudieras ostentar.</li>
+<li>Salvo donde se indique lo contrario, los contenidos de este servidor tienen licencia CC BY-SA 4.0. Esto significa que puedes redistribuirlos, adaptarlos, remezclarlos y construir subre ellos en cualquier medio y formato, incluso con fines comerciales, pero debes dar crédito a ITEISA como autor y distribuir la obra derivada bajo esta misma licencia.</li>
+<li>El código fuente se distribuye con licencia AGPL v3. Esto significa que puedes acceder, modificarlo y redistribuirlo, incluso con fines comerciales, pero debes licenciar como AGPL v3 y publicar el código fuente del proyecto completo en el que incorpores esta reutilización, incluir este aviso de licencia y del <i>copyright</i> de ITEISA y conceder derecho de uso sobre las patentes que pudieras ostentar.</li>
 </ul>
 El código fuente y los contenidos de iteisa.com están disponibles en:
 <a href="https://github.com/iteisa/iteisa.com">https://github.com/iteisa/iteisa.com</a>

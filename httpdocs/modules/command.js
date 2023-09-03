@@ -40,11 +40,11 @@ class Command extends MyElement {
       font-family: inherit;
     }
 
-    kbd:before {
+    kbd::before {
       content: '<';
     }
 
-    kbd:after {
+    kbd::after {
       content: '>';
     }
 
@@ -71,15 +71,28 @@ class Command extends MyElement {
       margin: calc(2ch * 1) 0 0 0;
       padding: 0;
       font-weight: 900;
+      text-transform: uppercase;
       /*text-align: center;*/
     }
 
-    h1:before {
+    h1::before {
       content: '<<< ';
     }
 
-    h1:after {
+    h1::after {
       content: ' >>>';
+    }
+
+    i {
+      font-style: normal;
+    }
+
+    i::before {
+      content: '«';
+    }
+
+    i::after {
+      content: '»';
     }
 
     div {
