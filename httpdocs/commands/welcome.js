@@ -8,7 +8,7 @@ class WelcomeCommand extends Command {
    _________________________
   /  _/_  __/ __/  _/ __/ _ |  Casa fundada en 2004 por Jaime Gómez-Obregón
  _/ /  / / / _/_/ /_\\ \\/ __ |  Versión <slot name="sha"></slot>, de <slot name="when"></slot>
-/___/ /_/ /___/___/___/_/ |_|  19 años, 4 meses y 17 días en línea
+/___/ /_/ /___/___/___/_/ |_|  <slot name="uptime"></slot> en línea
 
 <em>¡Bienvenido, 95.127.20.9!</em> Estás conectado al servidor iteisa.com.
 Eres el visitante número 23.323 y el 69 de hoy.
@@ -26,6 +26,7 @@ Comandos disponibles: <slot name="commands"></slot>.</pre>
     const sha = this.shadowRoot.querySelector('slot[name=sha]')
     const when = this.shadowRoot.querySelector('slot[name=when]')
     const commands = this.shadowRoot.querySelector('slot[name=commands]')
+    const uptime = this.shadowRoot.querySelector('slot[name=uptime]')
 
     const terminal = this.closest('x-terminal')
 
@@ -61,6 +62,28 @@ Comandos disponibles: <slot name="commands"></slot>.</pre>
     const list = terminal.commands
       .filter(({ hidden }) => !hidden)
       .map(({ href, command }) => html`<a href="${href}">${command}</a>`)
+
+    {
+      const years = 19
+      const months = 4
+      const days = 17
+
+      const periods = []
+
+      if (years) {
+        periods.push(`${years} años`)
+      }
+
+      if (months) {
+        periods.push(`${months} mes(es)`)
+      }
+
+      if (days) {
+        periods.push(`${days} día(s)`)
+      }
+
+      uptime.innerText = formatter.format(periods)
+    }
 
     commands.outerHTML = formatter.format(list)
   }

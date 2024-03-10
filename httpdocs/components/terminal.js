@@ -32,7 +32,8 @@ class Terminal extends MyElement {
 
     await import(`../commands/${module}`)
 
-    this.innerHTML += html`<${component}></${component}>`
+    const element = document.createElement(component)
+    this.append(element)
   }
 
   connectedCallback() {
@@ -86,8 +87,9 @@ class Terminal extends MyElement {
     this.addEventListener('command', ({ detail }) => {
       const { string } = detail
 
-      // TODO ‼️ XSS
-      this.innerHTML += html`<x-output>&gt; ${string}</x-output>`
+      const element = document.createElement('x-output')
+      element.innerText = `> ${string}`
+      this.append(element)
 
       const command = this.commands.find(({ command }) => command === string)
 
