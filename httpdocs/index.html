@@ -13,11 +13,10 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://iteisa.com" />
-    <meta property="og:image" content="https://iteisa.com/images/social.jpg" />
+    <meta property="og:image" content="https://iteisa.com/2023/social.jpg" />
 
-    <link rel="icon" type="image/png" href="/icons/icon.png" />
-    <link rel="apple-touch-icon" href="/icons/icon.png" />
-    <meta name="theme-color" content="#203a00" />
+    <link rel="icon" type="image/png" href="/2023/icon.png" />
+    <link rel="apple-touch-icon" href="/2023/icon.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ITEISA" />
@@ -27,17 +26,186 @@
       name="twitter:description"
       content="Laboratorio de productos digitales."
     />
-    <meta name="twitter:image" content="https://iteisa.com/images/social.jpg" />
+    <meta name="twitter:image" content="https://iteisa.com/2023/social.jpg" />
     <meta name="twitter:image:alt" content="Comienza una nueva etapa." />
-
-    <link rel="stylesheet" href="/stylesheets/iteisa.css" />
 
     <title>ITEISA</title>
 
-    <script type="module" src="/modules/iteisa.js"></script>
+    <style>
+      @keyframes blink {
+        0%,
+        50% {
+          background-color: var(--color);
+        }
+      }
+
+      @keyframes scan {
+        0% {
+          background-position: 0 -100vh;
+        }
+
+        35%,
+        100% {
+          background-position: 0 100vh;
+        }
+      }
+
+      @font-face {
+        font-family: VT220;
+        font-style: normal;
+        font-weight: 500;
+        font-display: block;
+        src: url(/2023/vt220.ttf);
+      }
+
+      :root {
+        --size: 28px;
+        --color: #28ea00;
+      }
+
+      @media (max-width: 1024px) {
+        :root {
+          --size: 24px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --size: 20px;
+        }
+      }
+
+      ::selection {
+        background: var(--color);
+        color: black;
+      }
+
+      html {
+        min-height: 100vh;
+        background-color: black;
+        background-image: radial-gradient(#11581e, #041607), url(/2023/noise.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: default;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        hyphens: auto;
+        font-size: var(--size);
+        min-height: 100vh;
+        background: repeating-linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0,
+          rgba(0, 0, 0, 0.3) 50%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        background-size: auto 4px;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          0deg,
+          transparent 0%,
+          rgba(32, 128, 32, 0.2) 2%,
+          rgba(32, 128, 32, 0.8) 3%,
+          rgba(32, 128, 32, 0.2) 3%,
+          transparent 100%
+        );
+        background-repeat: no-repeat;
+        background-position: 0 -100vh;
+        animation: scan 5s linear 5s infinite;
+        pointer-events: none;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.03;
+        background-image: url(/2023/noise.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        pointer-events: none;
+      }
+
+      div {
+        font-family: VT220, monospace;
+        width: 80ch;
+        padding: 5vw;
+        margin: auto;
+        color: var(--color);
+        text-shadow: 0 0 20px #1b5715e0, 0 0 5px #33d511ed, 0 0 2px #22662c;
+      }
+
+      div mark {
+        position: absolute;
+        width: 1ch;
+        height: 2ch;
+        z-index: -1;
+        margin-left: 1ch;
+        background-color: transparent;
+        animation: 1s blink infinite;
+      }
+    </style>
+
+    <script type="module">
+      const div = document.querySelector("div");
+      const html = div.innerHTML;
+      const contents = html.trim().replaceAll(/\s+/g, " ");
+
+      div.innerHTML = "";
+
+      const startupDelay = 1000;
+      const typeDelay = 10;
+
+      let i = 0;
+      let skip = false;
+      let timeout;
+
+      const loop = () => {
+        if (contents[i] === undefined) {
+          clearTimeout(timeout);
+          return;
+        }
+
+        if (!skip && contents[i] === ">") {
+          skip = false;
+          i++;
+        } else if (contents[i] === "<") {
+          skip = true;
+          i++;
+        }
+
+        div.innerHTML = contents.slice(0, ++i);
+
+        const milliseconds = skip ? 0 : typeDelay;
+        timeout = setTimeout(loop, milliseconds);
+      };
+
+      setTimeout(loop, startupDelay);
+    </script>
   </head>
   <body>
-    <x-terminal></x-terminal>
-    <x-pointer></x-pointer>
+    <div>
+      ITEISA es una empresa del sector tecnológico fundada en 2004. Atesora una
+      trayectoria de 20 años en el mercado de la consultoría y los servicios en
+      la nube, y más de 1000 clientes en varios países.<br />
+      <br />
+      En agosto de 2023 el negocio y la plataforma tecnológica de ITEISA han
+      sido adquiridos por otra compañía.<br />
+      <br />
+      Comienza una nueva etapa.<br />
+      <br />
+      &gt; <mark></mark>
+    </div>
   </body>
 </html>
