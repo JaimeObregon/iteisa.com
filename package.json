@@ -26,6 +26,6 @@
   "devDependencies": {
     "git-repo-info": "^2.1.1",
     "live-server": "^1.2.2",
-    "prettier": "^2.8.2"
+    "prettier": "^3.6.2"
   }
 }
