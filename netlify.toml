@@ -1,3 +1,6 @@
+# Fuente de la verdad para los despliegues en Netlify.
+# Lo aquí configurado prevalece sobre la UI.
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
